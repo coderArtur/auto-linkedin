@@ -1,0 +1,23 @@
+# Ambientes Virtuais
+.venv/
+venv/
+env/
+
+# Configurações sensíveis e Senhas
+.env
+
+# Sessões e Cookies do Navegador
+sessao.json
+
+# Logs
+*.log
+log_linkedin.txt
+
+# Arquivos temporários e Cache do Python
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+
+# Pastas de suporte de IA
+.gemini/
