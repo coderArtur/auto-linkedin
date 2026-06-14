@@ -141,10 +141,20 @@ def run_daily_automation():
             print(f"Estratégia selecionada para hoje: {strategy}")
             
             if strategy == "engenheiro_dados":
-                search_and_connect(page, "engenheiro%20de%20dados", max_connections=10)
-                search_and_connect(page, "engenheira%20de%20dados", max_connections=10)
+                max_masc = random.randint(8, 12)
+                max_fem = random.randint(8, 12)
+                try:
+                    search_and_connect(page, "engenheiro%20de%20dados", max_connections=max_masc)
+                except Exception as e:
+                    print(f"Erro no masculino: {e}")
+                
+                try:
+                    search_and_connect(page, "engenheira%20de%20dados", max_connections=max_fem)
+                except Exception as e:
+                    print(f"Erro no feminino: {e}")
             else:
-                search_and_connect(page, "data%20engineer", max_connections=20)
+                max_geral = random.randint(18, 22)
+                search_and_connect(page, "data%20engineer", max_connections=max_geral)
                 
             print("Rotina diária finalizada com sucesso. Limite de 20 conexões atingido.")
             
