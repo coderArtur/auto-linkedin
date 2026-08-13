@@ -91,10 +91,15 @@ def search_and_connect(page, keyword, max_connections=10):
 
         # Se não enviou o suficiente, passa para a próxima página
         if connections_sent < max_connections:
-            next_button = page.locator('button:has-text("Próxima")')
+            # Usa o data-testid exato além do texto, pega o primeiro caso achem dois
+            next_button = page.locator('button[data-testid="pagination-controls-next-button-visible"], button:has-text("Próxima")').first
             if next_button.is_visible() and not next_button.is_disabled():
                 print("Indo para a próxima página...")
-                next_button.click()
+                # Rola até o botão para evitar que elementos flutuantes do LinkedIn (como chat) o cubram
+                next_button.scroll_into_view_if_needed()
+                random_sleep(1, 3)
+                # Usa force=True para clicar mesmo que o Playwright ache que ele está obstruído
+                next_button.click(force=True)
                 random_sleep(8, 15)
             else:
                 print("Não há mais páginas ou botão 'Próxima' indisponível.")
@@ -104,7 +109,7 @@ def run_daily_automation():
     print("Iniciando rotina diária...")
     with sync_playwright() as p:
         # Rodamos apenas o firefox
-        browser = p.firefox.launch(headless=True) # Em uma VM, geralmente headless=True
+        browser = p.firefox.launch(headless=False) # Em uma VM, geralmente headless=True
         # Tenta reaproveitar a sessão anterior se ela existir
         state_file = "sessao.json"
         if os.path.exists(state_file):
