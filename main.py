@@ -109,7 +109,7 @@ def run_daily_automation():
     print("Iniciando rotina diária...")
     with sync_playwright() as p:
         # Rodamos apenas o firefox
-        browser = p.firefox.launch(headless=False) # Em uma VM, geralmente headless=True
+        browser = p.firefox.launch(headless=True) # Em uma VM, geralmente headless=True
         # Tenta reaproveitar a sessão anterior se ela existir
         state_file = "sessao.json"
         if os.path.exists(state_file):
