@@ -33,7 +33,7 @@ LINKEDIN_PASSWORD=sua_senha
 ```
 
 ### 3. Primeira Execução e Autenticação
-Antes de agendar qualquer coisa, é obrigatório rodar o script manualmente pelo menos uma vez para que ele faça o primeiro login e gere o arquivo `sessao.json`. Assim, as próximas execuções automáticas não precisarão preencher e-mail e senha.
+Antes de agendar qualquer coisa, é obrigatório rodar o script manualmente pelo menos uma vez para que ele faça o primeiro login e gere o arquivo `sessao.json`, então coloque o modo headless = False. Assim, as próximas execuções automáticas não precisarão preencher e-mail e senha.
 ```cmd
 python main.py
 ```

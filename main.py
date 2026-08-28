@@ -142,7 +142,7 @@ def run_daily_automation():
                 print("Perfeito! Já estamos logados. Pulando tela de login...")
             
             # Escolhe aleatoriamente a estratégia do dia
-            strategy = random.choice(["engenheiro_dados", "data_engineer"])
+            strategy = random.choice(["engenheiro_dados", "data_engineer", "tech_recruiter"])
             print(f"Estratégia selecionada para hoje: {strategy}")
             
             if strategy == "engenheiro_dados":
@@ -157,6 +157,9 @@ def run_daily_automation():
                     search_and_connect(page, "engenheira%20de%20dados", max_connections=max_fem)
                 except Exception as e:
                     print(f"Erro no feminino: {e}")
+            elif strategy == "tech_recruiter":
+                max_geral = random.randint(18, 22)
+                search_and_connect(page, "tech%20recruiter", max_connections=max_geral)
             else:
                 max_geral = random.randint(18, 22)
                 search_and_connect(page, "data%20engineer", max_connections=max_geral)
