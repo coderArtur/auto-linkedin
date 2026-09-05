@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
 
 # Para ocultar o navegador
-NAVEGADOR_INVISIVEL = True
+NAVEGADOR_INVISIVEL = False
 
 # Carrega as credenciais do .env
 load_dotenv()
@@ -70,6 +70,16 @@ def search_and_connect(page, keyword, max_connections=10):
                 print(f"[{connections_sent+1}] Clicou em Conectar. Aguardando modal...")
                 random_sleep(3, 6)
                 
+                # Verifica se o LinkedIn está pedindo e-mail para este usuário (caso raro)
+                email_input = page.locator('div[role="dialog"] input[type="email"]')
+                if email_input.count() > 0:
+                    print("LinkedIn pediu e-mail para este usuário. Pulando sem contabilizar...")
+                    close_btn = page.get_by_role("button", name="Fechar", exact=True)
+                    if close_btn.count() > 0:
+                        close_btn.first.click()
+                    random_sleep(2, 4)
+                    failed_buttons += 1
+                    continue
                 send_button = page.get_by_role("button", name="Enviar sem nota")
                 if send_button.count() > 0:
                     send_button.first.click()
@@ -152,19 +162,19 @@ def run_daily_automation():
                     {"keyword": "engenheiro%20de%20dados", "min_conn": 8, "max_conn": 12},
                     {"keyword": "engenheira%20de%20dados", "min_conn": 8, "max_conn": 12}
                 ],
-                "tech_recruiter": [
-                    {"keyword": "tech%20recruiter", "min_conn": 18, "max_conn": 22}
-                ],
-                "data_engineer": [
-                    {"keyword": "data%20engineer", "min_conn": 18, "max_conn": 22}
-                ],
-                "ai_engineer": [
-                    {"keyword": "ai%20engineer", "min_conn": 18, "max_conn": 22}
-                ],
-                "engenheiro_ia": [
-                    {"keyword": "engenheiro%20de%20ia", "min_conn": 8, "max_conn": 12},
-                    {"keyword": "engenheira%20de%20ia", "min_conn": 8, "max_conn": 12}
-                ]
+                # "tech_recruiter": [
+                #     {"keyword": "tech%20recruiter", "min_conn": 18, "max_conn": 22}
+                # ],
+                # "data_engineer": [
+                #     {"keyword": "data%20engineer", "min_conn": 18, "max_conn": 22}
+                # ],
+                # "ai_engineer": [
+                #     {"keyword": "ai%20engineer", "min_conn": 18, "max_conn": 22}
+                # ],
+                # "engenheiro_ia": [
+                #     {"keyword": "engenheiro%20de%20ia", "min_conn": 8, "max_conn": 12},
+                #     {"keyword": "engenheira%20de%20ia", "min_conn": 8, "max_conn": 12}
+                # ]
             }
 ###################################################################################################################
             
