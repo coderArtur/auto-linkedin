@@ -1,9 +1,13 @@
+# pyrefly: ignore [missing-import]
 import os
 import random
 import time
 import schedule
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
+
+# Para ocultar o navegador
+NAVEGADOR_INVISIVEL = True
 
 # Carrega as credenciais do .env
 load_dotenv()
@@ -109,7 +113,7 @@ def run_daily_automation():
     print("Iniciando rotina diária...")
     with sync_playwright() as p:
         # Rodamos apenas o firefox
-        browser = p.firefox.launch(headless=True) # Em uma VM, geralmente headless=True
+        browser = p.firefox.launch(headless=NAVEGADOR_INVISIVEL) # Em uma VM, geralmente headless=True
         # Tenta reaproveitar a sessão anterior se ela existir
         state_file = "sessao.json"
         if os.path.exists(state_file):

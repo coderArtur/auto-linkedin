@@ -34,9 +34,10 @@ LINKEDIN_PASSWORD=sua_senha
 
 ### 3. Primeira Execução e Autenticação
 > [!IMPORTANT]
-Antes de agendar qualquer coisa, é obrigatório rodar o script manualmente pelo menos uma vez para que ele faça o primeiro login e gere o arquivo `sessao.json`, então coloque o modo **headless=False**.
-Assim que o login for realizade, feche o terminal e modifique para **headless=True**
-Dessa forma, as próximas execuções automáticas não precisarão preencher e-mail e senha.
+Antes de agendar qualquer coisa, é obrigatório rodar o script manualmente pelo menos uma vez para que ele faça o primeiro login e gere o arquivo `sessao.json`. Para isso, configure no topo do `main.py`: **`NAVEGADOR_INVISIVEL = False`**.
+Assim que o login for realizado com sucesso, feche o terminal e volte para **`NAVEGADOR_INVISIVEL = True`**.
+Dessa forma, as próximas execuções automáticas não precisarão preencher e-mail e senha e rodarão silenciosamente.
+
 ```cmd
 python main.py
 ```
