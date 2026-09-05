@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
 
 # Para ocultar o navegador
-NAVEGADOR_INVISIVEL = False
+NAVEGADOR_INVISIVEL = True
 
 # Carrega as credenciais do .env
 load_dotenv()
@@ -162,19 +162,19 @@ def run_daily_automation():
                     {"keyword": "engenheiro%20de%20dados", "min_conn": 8, "max_conn": 12},
                     {"keyword": "engenheira%20de%20dados", "min_conn": 8, "max_conn": 12}
                 ],
-                # "tech_recruiter": [
-                #     {"keyword": "tech%20recruiter", "min_conn": 18, "max_conn": 22}
-                # ],
-                # "data_engineer": [
-                #     {"keyword": "data%20engineer", "min_conn": 18, "max_conn": 22}
-                # ],
-                # "ai_engineer": [
-                #     {"keyword": "ai%20engineer", "min_conn": 18, "max_conn": 22}
-                # ],
-                # "engenheiro_ia": [
-                #     {"keyword": "engenheiro%20de%20ia", "min_conn": 8, "max_conn": 12},
-                #     {"keyword": "engenheira%20de%20ia", "min_conn": 8, "max_conn": 12}
-                # ]
+                "tech_recruiter": [
+                    {"keyword": "tech%20recruiter", "min_conn": 18, "max_conn": 22}
+                ],
+                "data_engineer": [
+                    {"keyword": "data%20engineer", "min_conn": 18, "max_conn": 22}
+                ],
+                "ai_engineer": [
+                    {"keyword": "ai%20engineer", "min_conn": 18, "max_conn": 22}
+                ],
+                "engenheiro_ia": [
+                    {"keyword": "engenheiro%20de%20ia", "min_conn": 8, "max_conn": 12},
+                    {"keyword": "engenheira%20de%20ia", "min_conn": 8, "max_conn": 12}
+                ]
             }
 ###################################################################################################################
             
