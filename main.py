@@ -141,28 +141,40 @@ def run_daily_automation():
             else:
                 print("Perfeito! Já estamos logados. Pulando tela de login...")
             
-            # Escolhe aleatoriamente a estratégia do dia
-            strategy = random.choice(["engenheiro_dados", "data_engineer", "tech_recruiter"])
-            print(f"Estratégia selecionada para hoje: {strategy}")
+###################################################################################################################
+            # Define as estratégias disponíveis e seus parâmetros de busca
+            estrategias = {
+                "engenheiro_dados": [
+                    {"keyword": "engenheiro%20de%20dados", "min_conn": 8, "max_conn": 12},
+                    {"keyword": "engenheira%20de%20dados", "min_conn": 8, "max_conn": 12}
+                ],
+                "tech_recruiter": [
+                    {"keyword": "tech%20recruiter", "min_conn": 18, "max_conn": 22}
+                ],
+                "data_engineer": [
+                    {"keyword": "data%20engineer", "min_conn": 18, "max_conn": 22}
+                ],
+                "ai_engineer": [
+                    {"keyword": "ai%20engineer", "min_conn": 18, "max_conn": 22}
+                ],
+                "engenheiro_ia": [
+                    {"keyword": "engenheiro%20de%20ia", "min_conn": 8, "max_conn": 12},
+                    {"keyword": "engenheira%20de%20ia", "min_conn": 8, "max_conn": 12}
+                ]
+            }
+###################################################################################################################
             
-            if strategy == "engenheiro_dados":
-                max_masc = random.randint(8, 12)
-                max_fem = random.randint(8, 12)
+            # Escolhe aleatoriamente a estratégia do dia com base nas chaves do dicionário
+            strategy_name = random.choice(list(estrategias.keys()))
+            print(f"Estratégia selecionada para hoje: {strategy_name}")
+            
+            # Executa as buscas da estratégia selecionada de forma dinâmica
+            for busca in estrategias[strategy_name]:
+                max_conn = random.randint(busca["min_conn"], busca["max_conn"])
                 try:
-                    search_and_connect(page, "engenheiro%20de%20dados", max_connections=max_masc)
+                    search_and_connect(page, busca["keyword"], max_connections=max_conn)
                 except Exception as e:
-                    print(f"Erro no masculino: {e}")
-                
-                try:
-                    search_and_connect(page, "engenheira%20de%20dados", max_connections=max_fem)
-                except Exception as e:
-                    print(f"Erro no feminino: {e}")
-            elif strategy == "tech_recruiter":
-                max_geral = random.randint(18, 22)
-                search_and_connect(page, "tech%20recruiter", max_connections=max_geral)
-            else:
-                max_geral = random.randint(18, 22)
-                search_and_connect(page, "data%20engineer", max_connections=max_geral)
+                    print(f"Erro na busca por '{busca['keyword']}': {e}")
                 
             print("Rotina diária finalizada com sucesso. Limite de 20 conexões atingido.")
             
@@ -182,6 +194,8 @@ def job():
 if __name__ == "__main__":
     print("Iniciando bot...")
     run_daily_automation()
+
+    # APENAS SE FUNCIONASSE EM UMA VPS, MAS O LINKEDIN BLOQUEIA MESMO COM USO DE VPN
 
     # print("Iniciando bot...")
     # print("Escolha o modo de execução:")
