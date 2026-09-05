@@ -91,8 +91,3 @@ Após isso, pode salvar a tarefa, para testar, clique com o botão direito nela 
 
 ### Observação sobre a Tela de Salvamento (Aba Geral)
 Se o Windows pedir alguma senha e der erro na hora de salvar, dê dois cliques na tarefa criada para abrir as Propriedades (Aba Geral) e certifique-se de que a opção **"Executar somente quando o usuário estiver conectado"** está marcada. Isso evita conflitos com contas vinculadas a e-mail Outlook/PIN.
-
----
-
-### E agora?
-Missão cumprida! Todos os dias, no horário agendado, o Windows abrirá um terminal automaticamente, acionará o seu robô, fará as conexões com profissionais estratégicos aguardando os devidos tempos de segurança, e se encerrará sozinho. Tudo no piloto automático!
